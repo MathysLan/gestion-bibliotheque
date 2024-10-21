@@ -40,9 +40,6 @@ class Abonne
     #[ORM\JoinColumn(nullable: false)]
     private Livre $livre;
 
-    #[ORM\ManyToOne(targetEntity: Abonne::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private Abonne $abonne;
 
     public function getId(): ?int
     {

@@ -99,6 +99,12 @@
             "@test:phpcs",
             "@test:twigcs",
             "@test:codeception"
+        ],
+        "db": [
+            "php bin/console doctrine:database:drop --force --if-exists",
+            "php bin/console doctrine:database:create",
+            "php bin/console doctrine:migrations:migrate --no-interaction",
+            "php bin/console doctrine:fixtures:load --no-interaction"
         ]
 
     },
@@ -132,6 +138,7 @@
         "test:twigcs": "Test TWIG code with Twig Cs Fixer",
         "fix:twigcs": "Fix TWIG code with Twig Cs Fixer",
         "test:codeception": "codeception clean + php vendor/bin/codecept run",
-        "test": "test:phpcs + test:twigcs + test:codeception"
+        "test": "test:phpcs + test:twigcs + test:codeception",
+        "db": "Script qui force la destruction de la base de données / Créé la base de données / Application des migrations successives / Génération des données factices"
     }
 }
