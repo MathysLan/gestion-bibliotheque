@@ -2,12 +2,14 @@
 
 namespace App\DataFixtures;
 
+use App\Factory\AbonneFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class ContactFixtures extends Fixture
+class AbonneFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        AbonneFactory::createMany(25);
     }
 }

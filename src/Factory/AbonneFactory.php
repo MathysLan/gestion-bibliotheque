@@ -5,6 +5,7 @@ namespace App\Factory;
 use App\Entity\Abonne;
 use App\Repository\AbonneRepository;
 use Doctrine\ORM\EntityRepository;
+use Transliterator;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 use Zenstruck\Foundry\Persistence\Proxy;
 use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
@@ -29,6 +30,8 @@ use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
  * @method static Abonne[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
 final class AbonneFactory extends PersistentProxyObjectFactory{
+    private Transliterator $transliterator;
+
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
      *
@@ -36,7 +39,9 @@ final class AbonneFactory extends PersistentProxyObjectFactory{
      */
     public function __construct()
     {
+        $this->transliterator = Transliterator::create('Any-Lower; Latin-ASCII');
     }
+
 
     public static function class(): string
     {
@@ -50,14 +55,17 @@ final class AbonneFactory extends PersistentProxyObjectFactory{
      */
     protected function defaults(): array|callable
     {
+        $lastname =self::faker()->lastName();
+        $firstname = self::faker()->firstName();
+
         return [
             'abonne' => AbonneFactory::new(),
             'dateInscription' => self::faker()->dateTime(),
-            'email' => self::faker()->text(180),
+            'email' => $this->normalizeName($firstname) . '.' .$this->normalizeName($lastname).'@'.self::faker()->domainName(),
             'livre' => null, // TODO add App\Entity\Livre type manually
-            'nom' => self::faker()->text(100),
+            'nom' => $lastname,
             'nombreEmpruntAutorise' => self::faker()->randomNumber(),
-            'prenom' => self::faker()->text(100),
+            'prenom' => $firstname,
         ];
     }
 
@@ -70,4 +78,10 @@ final class AbonneFactory extends PersistentProxyObjectFactory{
             // ->afterInstantiate(function(Abonne $abonne): void {})
         ;
     }
+
+    protected function normalizeName(string $name): string
+    {
+        return preg_replace('/\W+/', '-', mb_strtolower($this->transliterator->transliterate($name)));
+    }
+
 }
