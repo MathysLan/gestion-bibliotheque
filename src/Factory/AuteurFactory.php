@@ -57,6 +57,9 @@ final class AuteurFactory extends PersistentProxyObjectFactory{
         return [
             'nom' => self::faker()->text(100),
             'prenom' => self::faker()->text(100),
+            'date_naissance' => self::faker()->date(),
+            'nationalite' => self::faker()->country(),
+            'biographie' => self::faker()->text()
         ];
     }
 
