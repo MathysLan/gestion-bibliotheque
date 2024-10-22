@@ -65,6 +65,8 @@ final class AbonneFactory extends PersistentProxyObjectFactory{
             'nom' => $lastname,
             'nombreEmpruntAutorise' => self::faker()->randomNumber(),
             'prenom' => $firstname,
+            'adresse' => self::faker()->address(),
+            'telephone' => self::faker()->phoneNumber(),
         ];
     }
 
