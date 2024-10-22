@@ -11,7 +11,5 @@ class AbonneFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         AbonneFactory::createMany(2);
-        $manager->flush();
-        $manager->clear();
     }
 }
