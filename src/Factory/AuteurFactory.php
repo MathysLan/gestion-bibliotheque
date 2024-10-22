@@ -55,9 +55,9 @@ final class AuteurFactory extends PersistentProxyObjectFactory{
     protected function defaults(): array|callable
     {
         return [
-            'nom' => self::faker()->text(100),
-            'prenom' => self::faker()->text(100),
-            'date_naissance' => self::faker()->date(),
+            'nom' => self::faker()->lastName,
+            'prenom' => self::faker()->firstName(),
+            'date_naissance' =>\DateTime::createFromFormat('Y-m-d', self::faker()->date()),
             'nationalite' => self::faker()->country(),
             'biographie' => self::faker()->text()
         ];
