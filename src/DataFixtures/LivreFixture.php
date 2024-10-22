@@ -10,6 +10,6 @@ class LivreFixture extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        LivreFactory::createMany(2);
+        LivreFactory::createMany(10);
     }
 }

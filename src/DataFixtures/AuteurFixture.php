@@ -11,6 +11,6 @@ class AuteurFixture extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        AuteurFactory::createMany(2);
+        AuteurFactory::createMany(10);
     }
 }

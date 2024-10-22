@@ -10,6 +10,6 @@ class AbonneFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        AbonneFactory::createMany(2);
+        AbonneFactory::createMany(10);
     }
 }
