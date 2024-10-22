@@ -83,8 +83,7 @@
         <div class="book-card">
             <div class="book-title">{{ livre.titre }}</div>
             <div class="book-author">Auteur : {{ livre.auteur.nom }} {{ livre.auteur.prenom }}</div>
-            <div class="book-genre">Genre : {{ livre.genre.nom }}</div>
-            <div class="book-description">{{ livre.description | slice(0, 100) }}{% if livre.description|length > 100 %}...{% endif %}</div>
+            <div class="book-description">{{ livre.resume | slice(0, 100) }}{% if livre.resume|length > 100 %}...{% endif %}</div>
         </div>
     {% else %}
         <p>Aucun livre trouvé.</p>
