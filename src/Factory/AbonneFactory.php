@@ -5,6 +5,7 @@ namespace App\Factory;
 use App\Entity\Abonne;
 use App\Repository\AbonneRepository;
 use Doctrine\ORM\EntityRepository;
+use \Transliterator;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 use Zenstruck\Foundry\Persistence\Proxy;
 use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
@@ -29,7 +30,7 @@ use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
  * @method static Abonne[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
 final class AbonneFactory extends PersistentProxyObjectFactory{
-    private \Transliterator $transliterator;
+    private Transliterator $transliterator;
 
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
@@ -38,7 +39,7 @@ final class AbonneFactory extends PersistentProxyObjectFactory{
      */
     public function __construct()
     {
-        $this->transliterator = \Transliterator::create('Any-Lower; Latin-ASCII');
+        $this->transliterator = Transliterator::create('Any-Lower; Latin-ASCII');
     }
 
 
@@ -79,7 +80,7 @@ final class AbonneFactory extends PersistentProxyObjectFactory{
 
     protected function normalizeName(string $name): string
     {
-        return preg_replace('/\W+/', '-', mb_strtolower($this->transliterator->transliterate($name)));
+        return preg_replace('/\W+/', '-', mb_strtolower(($this->transliterator->transliterate($name))));
     }
 
 }
