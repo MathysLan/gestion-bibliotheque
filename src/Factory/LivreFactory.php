@@ -4,7 +4,6 @@ namespace App\Factory;
 
 use App\Entity\Livre;
 use App\Repository\LivreRepository;
-use Doctrine\ORM\EntityRepository;
 use Transliterator;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 use Zenstruck\Foundry\Persistence\Proxy;
@@ -59,7 +58,8 @@ final class LivreFactory extends PersistentProxyObjectFactory{
             'datePublication' => self::faker()->dateTime(),
             'isbn' => self::faker()->text(255),
             'nombrePages' => self::faker()->randomNumber(),
-            'titre' => self::faker()->text(255),
+            'titre' => self::faker()->jobTitle(),
+            'resume' => self::faker()->paragraph()
         ];
     }
 
