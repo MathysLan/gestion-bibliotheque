@@ -56,7 +56,7 @@ final class LivreFactory extends PersistentProxyObjectFactory{
         return [
             'auteur' => AuteurFactory::new(),
             'datePublication' => self::faker()->dateTime(),
-            'isbn' => self::faker()->text(255),
+            'isbn' => self::faker()->randomNumber(),
             'nombrePages' => self::faker()->randomNumber(),
             'titre' => self::faker()->jobTitle(),
             'resume' => self::faker()->paragraph()
