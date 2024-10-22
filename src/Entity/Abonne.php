@@ -136,4 +136,15 @@ class Abonne
 
         return $this;
     }
+
+    public function getLivre(): Livre
+    {
+        return $this->livre;
+    }
+
+    public function setLivre(Livre $livre): void
+    {
+        $this->livre = $livre;
+    }
+
 }
