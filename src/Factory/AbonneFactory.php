@@ -58,7 +58,6 @@ final class AbonneFactory extends PersistentProxyObjectFactory{
         $firstname = self::faker()->firstName();
 
         return [
-            'abonne' => AbonneFactory::new(),
             'dateInscription' => self::faker()->dateTime(),
             'email' => $this->normalizeName($firstname) . '.' .$this->normalizeName($lastname).'@'.self::faker()->domainName(),
             'livre' => null, // TODO add App\Entity\Livre type manually
